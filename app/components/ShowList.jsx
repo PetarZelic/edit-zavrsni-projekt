@@ -8,8 +8,11 @@ import fetchAllShows from './fetchAllShows';
 
 const ITEMS_PER_PAGE = 20;
 
-export default function ShowList({ page = 1 }) {
-  const currentPage = parseInt(page, 10) || 1;
+import { useSearchParams } from 'next/navigation';
+
+export default function ShowList() {
+  const searchParams = useSearchParams();
+  const currentPage = parseInt(searchParams.get('page') || '1', 10);
 
   const [shows, setShows] = useState([]);
   const [pageNums, setPageNums] = useState([]);
@@ -171,7 +174,7 @@ export default function ShowList({ page = 1 }) {
       <div className="flex justify-center items-center gap-2 mt-10">
         <Link
           href={`/?page=${currentPage - 1}`}
-          className={`px-4 py-2 bg-red-200 rounded ${
+          className={`px-4 py-2 bg-red-500 rounded ${
             currentPage <= 1 ? 'pointer-events-none opacity-50' : ''
           }`}
         >

@@ -1,20 +1,20 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import notFound from "@/app/NotFound";
+import NotFound from "@/app/NotFound";
 import FavoriteButton from "@/app/components/FavoriteButton";
 
 
 
 
-export default async function EpisodeInfo({params}) {
+export default async function EpisodeInfo({ params }) {
     const epID = params.epID;
 
 
     //dohvat episode
     const epRes = await fetch(`https://api.tvmaze.com/episodes/${epID}`);
     if (!epRes.ok) {
-        notFound();
+        NotFound();
     }
     const episode = await epRes.json();
 
@@ -44,13 +44,14 @@ export default async function EpisodeInfo({params}) {
                 {episode.image?.medium ? (
                     <Image
                         src={episode.image.medium}
-                        width={300}
-                        height={300}
+                        width={150}
+                        height={150}
                         alt={episode.name}
-                        className="rounded-lg shadow-md"
+                        priority
+                        className="mb-2 rounded"
                     />
                 ) : (
-                    <div className="w-[300px] h-[300px] flex items-center justify-center  text-gray-600 italic rounded-lg">
+                    <div className="w-[150px] h-[150px] flex items-center justify-center bg-gray-100 text-gray-500 italic rounded mb-2">
                         Nema slike
                     </div>
                 )}
@@ -89,14 +90,22 @@ export default async function EpisodeInfo({params}) {
                                 key={actor.person.id}
                                 className="flex flex-col items-center text-center border p-4  shadow hover:shadow-md transition"
                             >
-                                <Image
-                                    src={actor.person.image?.medium}
-                                    width={150}
-                                    height={150}
-                                    alt={actor.person.name}
-                                    priority
-                                    className=" mb-2"
-                                />
+                                {actor.person.image?.medium ? (
+                                    <Image
+                                        src={actor.person.image.medium}
+                                        width={150}
+                                        height={150}
+                                        alt={actor.person.name}
+                                        priority
+                                        className="mb-2 rounded"
+                                    />
+                                ) : (
+                                    <div className="w-[150px] h-[150px] bg-gray-100 flex items-center justify-center text-gray-500 text-sm italic rounded mb-2">
+                                        Nema slike
+                                    </div>
+                                )}
+
+
                                 <p className="font-medium">{actor.person.name}</p>
                                 <p className="text-sm text-[#AE445A] italic">
                                     kao {actor.roles.join(", ")}

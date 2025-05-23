@@ -1,36 +1,46 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# TV Show Browser 🎬
 
-## Getting Started
+Ova aplikacija omogućava korisnicima pregled i istraživanje TV serija putem [TVMaze API-ja](https://www.tvmaze.com/api). Korisnici mogu pregledavati serije, njihove epizode, glumce, te spremati omiljene serije i glumce kao favorite.
 
-First, run the development server:
+ Ključne značajke
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+-  Početna stranica s listom TV serija (pretraga, sortiranje, paginacija)
+-  Dinamičke rute za pojedinačne serije, glumce i epizode
+-  Dodavanje/brisanje favorita (pohranjeno u localStorage)
+-  /favorites stranica s pregledom označenih favorita
+-  404 stranica za nepostojeće rute
+-  Deploy na Vercel (Next.js serverless hosting)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+ Lokalno pokretanje
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+1. Kloniraj repozitorij:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+   ```bash
+   git clone https://github.com/PetarZelic/edit-zavrsni-projekt.git
+   cd naziv-repozitorija````
 
-## Learn More
+2. Instaliraj ovisnosti
+    npm install
+3. Pokreni razvojni server:
+    npm run dev
 
-To learn more about Next.js, take a look at the following resources:
+1. Napravi produkcijski build:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+    npm run build
 
-## Deploy on Vercel
+2. Testiraj lokalno buildanu verziju:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+    npm start
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+3. Aplikacija je deployana na Vercel:
+     https://edit-zavrsni-projekt.vercel.app/
+
+
+
+ Poznate greške / TODO
+Epizode nekih serija s velikim brojem sezona (npr. Family Guy) ponekad uzrokuju timeout zbog velikog broja API poziva – potrebno razmotriti paralelno dohvaćanje ili keširanje.
+
+Poboljšati prikaz paginacije (ukupni broj stranica, oznaka trenutne).
+
+Dodati opciju filtriranja po žanrovima ili godini.

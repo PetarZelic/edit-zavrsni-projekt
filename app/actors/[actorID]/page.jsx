@@ -78,7 +78,7 @@ export default async function ActorPage({ params }) {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             {filteredRoles.map((role, index) => (
               <div
-                key={role.show?.id || index}
+                key={`${role.show?.id || 's'}-${role.character?.id || 'c'}-${index}`}
                 className="border p-4 rounded-md shadow hover:shadow-lg transition"
               >
                 <h3 className="text-lg font-bold mb-1">{role.show?.name || "Nepoznata serija"}</h3>
